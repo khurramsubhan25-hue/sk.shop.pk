@@ -1,7 +1,14 @@
 /**
- * SK.SHOP.PK - State Management & Storage Engine
+ * SK.SHOP.PK - State Management & Storage Engine with Supabase Backend
  * Handles Products, Cart, Wishlist, Orders, Coupons, Reviews, Admin Auth
+ * Supabase Project: bkdammlmnxplntobphzl
+ * Supabase URL: https://bkdammlmnxplntobphzl.supabase.co
  */
+
+const SUPABASE_CONFIG = {
+  url: 'https://bkdammlmnxplntobphzl.supabase.co',
+  anonKey: 'sb_publishable_cvQk_pRxYkHt8F_edOzTNw_RDPQ6MyQ'
+};
 
 class StoreEngine {
   constructor() {
@@ -15,7 +22,20 @@ class StoreEngine {
       ADMIN_AUTH: 'sk_shop_admin_session_v1'
     };
     this.listeners = new Map();
+    this.supabase = null;
+    this.initSupabase();
     this.init();
+  }
+
+  initSupabase() {
+    try {
+      if (window.supabase && typeof window.supabase.createClient === 'function') {
+        this.supabase = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
+        console.log('[Supabase] Initialized successfully with project bkdammlmnxplntobphzl');
+      }
+    } catch (e) {
+      console.warn('[Supabase] Client init error:', e);
+    }
   }
 
   init() {
@@ -42,6 +62,99 @@ class StoreEngine {
     // Initialize recent if not present
     if (!localStorage.getItem(this.STORAGE_KEYS.RECENT)) {
       localStorage.setItem(this.STORAGE_KEYS.RECENT, JSON.stringify([]));
+    }
+
+    // Attempt background sync from Supabase database
+    this.syncFromSupabase();
+  }
+
+  // --- SUPABASE BACKGROUND SYNC ---
+  async syncFromSupabase() {
+    if (!this.supabase) return;
+
+    try {
+      // 1. Sync Products
+      const { data: prods, error: pErr } = await this.supabase
+        .from('products')
+        .select('*');
+
+      if (!pErr && prods && prods.length > 0) {
+        const formattedProds = prods.map(p => ({
+          id: p.id,
+          name: p.name,
+          brand: p.brand || 'SK Luxe Skin',
+          gender: p.gender,
+          category: p.category,
+          subcategory: p.subcategory,
+          price: Number(p.price),
+          originalPrice: p.original_price ? Number(p.original_price) : null,
+          rating: Number(p.rating || 4.9),
+          reviewCount: p.review_count || 10,
+          isNew: Boolean(p.is_new),
+          isBestSeller: Boolean(p.is_bestseller),
+          isOffer: Boolean(p.is_offer),
+          stock: Number(p.stock || 20),
+          images: Array.isArray(p.images) ? p.images : [],
+          description: p.description || '',
+          specs: p.specs || {},
+          variants: Array.isArray(p.variants) ? p.variants : [],
+          reviews: Array.isArray(p.reviews) ? p.reviews : []
+        }));
+        localStorage.setItem(this.STORAGE_KEYS.PRODUCTS, JSON.stringify(formattedProds));
+        this.notify('products_updated', formattedProds);
+        console.log(`[Supabase] Synced ${formattedProds.length} products from database`);
+      }
+
+      // 2. Sync Orders
+      const { data: ords, error: oErr } = await this.supabase
+        .from('orders')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (!oErr && ords && ords.length > 0) {
+        const formattedOrders = ords.map(o => ({
+          id: o.id,
+          date: o.created_at,
+          customerName: o.customer_name,
+          phone: o.phone,
+          whatsapp: o.whatsapp,
+          address: o.address,
+          city: o.city,
+          postalCode: o.postal_code || 'N/A',
+          notes: o.notes || '',
+          items: Array.isArray(o.items) ? o.items : [],
+          subtotal: Number(o.subtotal),
+          discount: Number(o.discount || 0),
+          couponCode: o.coupon_code || '',
+          shipping: Number(o.shipping || 0),
+          total: Number(o.total),
+          paymentMethod: o.payment_method || 'Cash on Delivery (COD)',
+          status: o.status || 'Pending',
+          trackingNumber: o.tracking_number || ''
+        }));
+        localStorage.setItem(this.STORAGE_KEYS.ORDERS, JSON.stringify(formattedOrders));
+        this.notify('orders_updated', formattedOrders);
+        console.log(`[Supabase] Synced ${formattedOrders.length} orders from database`);
+      }
+
+      // 3. Sync Coupons
+      const { data: coups, error: cErr } = await this.supabase
+        .from('coupons')
+        .select('*');
+
+      if (!cErr && coups && coups.length > 0) {
+        const formattedCoupons = coups.map(c => ({
+          code: c.code,
+          discountType: c.discount_type,
+          discountValue: Number(c.discount_value),
+          minOrder: Number(c.min_order || 0),
+          description: c.description || ''
+        }));
+        localStorage.setItem(this.STORAGE_KEYS.COUPONS, JSON.stringify(formattedCoupons));
+        this.notify('coupons_updated', formattedCoupons);
+      }
+    } catch (e) {
+      console.info('[Supabase] Waiting for SQL schema execution in Supabase Console:', e.message);
     }
   }
 
@@ -80,7 +193,7 @@ class StoreEngine {
     return products.find(p => p.id === id) || null;
   }
 
-  addProduct(product) {
+  async addProduct(product) {
     const products = this.getProducts();
     const newId = 'sk-' + Date.now().toString(36);
     const newProd = {
@@ -93,26 +206,88 @@ class StoreEngine {
     products.unshift(newProd);
     localStorage.setItem(this.STORAGE_KEYS.PRODUCTS, JSON.stringify(products));
     this.notify('products_updated', products);
+
+    // Sync to Supabase
+    if (this.supabase) {
+      try {
+        await this.supabase.from('products').insert([{
+          id: newProd.id,
+          name: newProd.name,
+          brand: newProd.brand,
+          gender: newProd.gender,
+          category: newProd.category,
+          subcategory: newProd.subcategory,
+          price: newProd.price,
+          original_price: newProd.originalPrice,
+          rating: newProd.rating,
+          review_count: newProd.reviewCount,
+          is_new: newProd.isNew,
+          is_bestseller: newProd.isBestSeller,
+          is_offer: newProd.isOffer,
+          stock: newProd.stock,
+          images: newProd.images,
+          description: newProd.description,
+          specs: newProd.specs || {},
+          variants: newProd.variants || [],
+          reviews: newProd.reviews || []
+        }]);
+      } catch (e) {
+        console.warn('Supabase addProduct sync error:', e);
+      }
+    }
+
     return newProd;
   }
 
-  updateProduct(id, updatedFields) {
+  async updateProduct(id, updatedFields) {
     const products = this.getProducts();
     const idx = products.findIndex(p => p.id === id);
     if (idx !== -1) {
       products[idx] = { ...products[idx], ...updatedFields };
       localStorage.setItem(this.STORAGE_KEYS.PRODUCTS, JSON.stringify(products));
       this.notify('products_updated', products);
+
+      // Sync to Supabase
+      if (this.supabase) {
+        try {
+          const mapped = {};
+          if (updatedFields.name !== undefined) mapped.name = updatedFields.name;
+          if (updatedFields.brand !== undefined) mapped.brand = updatedFields.brand;
+          if (updatedFields.gender !== undefined) mapped.gender = updatedFields.gender;
+          if (updatedFields.category !== undefined) mapped.category = updatedFields.category;
+          if (updatedFields.subcategory !== undefined) mapped.subcategory = updatedFields.subcategory;
+          if (updatedFields.price !== undefined) mapped.price = updatedFields.price;
+          if (updatedFields.originalPrice !== undefined) mapped.original_price = updatedFields.originalPrice;
+          if (updatedFields.stock !== undefined) mapped.stock = updatedFields.stock;
+          if (updatedFields.description !== undefined) mapped.description = updatedFields.description;
+          if (updatedFields.images !== undefined) mapped.images = updatedFields.images;
+
+          await this.supabase.from('products').update(mapped).eq('id', id);
+        } catch (e) {
+          console.warn('Supabase updateProduct sync error:', e);
+        }
+      }
+
       return products[idx];
     }
     return null;
   }
 
-  deleteProduct(id) {
+  async deleteProduct(id) {
     let products = this.getProducts();
     products = products.filter(p => p.id !== id);
     localStorage.setItem(this.STORAGE_KEYS.PRODUCTS, JSON.stringify(products));
     this.notify('products_updated', products);
+
+    // Sync to Supabase
+    if (this.supabase) {
+      try {
+        await this.supabase.from('products').delete().eq('id', id);
+      } catch (e) {
+        console.warn('Supabase deleteProduct sync error:', e);
+      }
+    }
+
     return true;
   }
 
@@ -270,7 +445,7 @@ class StoreEngine {
     return this.getWishlist().length;
   }
 
-  // --- ORDERS ---
+  // --- ORDERS & SUPABASE PERSISTENCE ---
   getOrders() {
     try {
       const data = localStorage.getItem(this.STORAGE_KEYS.ORDERS);
@@ -325,7 +500,7 @@ class StoreEngine {
     orders.unshift(newOrder);
     localStorage.setItem(this.STORAGE_KEYS.ORDERS, JSON.stringify(orders));
 
-    // Update stock levels for ordered items
+    // Update stock levels
     const products = this.getProducts();
     orderData.items.forEach(item => {
       const prod = products.find(p => p.id === item.productId || p.id === item.id);
@@ -340,16 +515,52 @@ class StoreEngine {
     this.notify('orders_updated', orders);
     this.notify('products_updated', products);
 
+    // Save to Supabase Cloud Database asynchronously
+    if (this.supabase) {
+      this.supabase.from('orders').insert([{
+        id: newOrder.id,
+        customer_name: newOrder.customerName,
+        phone: newOrder.phone,
+        whatsapp: newOrder.whatsapp,
+        address: newOrder.address,
+        city: newOrder.city,
+        postal_code: newOrder.postalCode,
+        notes: newOrder.notes,
+        items: newOrder.items,
+        subtotal: newOrder.subtotal,
+        discount: newOrder.discount,
+        coupon_code: newOrder.couponCode,
+        shipping: newOrder.shipping,
+        total: newOrder.total,
+        payment_method: newOrder.paymentMethod,
+        status: newOrder.status,
+        tracking_number: newOrder.trackingNumber
+      }]).then(({ data, error }) => {
+        if (error) console.warn('[Supabase] Order insert notice:', error.message);
+        else console.log('[Supabase] Order saved successfully to cloud:', newOrder.id);
+      }).catch(err => console.warn('[Supabase] Order sync skipped:', err));
+    }
+
     return newOrder;
   }
 
-  updateOrderStatus(orderId, newStatus) {
+  async updateOrderStatus(orderId, newStatus) {
     const orders = this.getOrders();
     const idx = orders.findIndex(o => o.id === orderId);
     if (idx !== -1) {
       orders[idx].status = newStatus;
       localStorage.setItem(this.STORAGE_KEYS.ORDERS, JSON.stringify(orders));
       this.notify('orders_updated', orders);
+
+      // Sync to Supabase
+      if (this.supabase) {
+        try {
+          await this.supabase.from('orders').update({ status: newStatus }).eq('id', orderId);
+        } catch (e) {
+          console.warn('Supabase updateOrderStatus sync error:', e);
+        }
+      }
+
       return orders[idx];
     }
     return null;
@@ -378,29 +589,55 @@ class StoreEngine {
     return { valid: true, coupon: found };
   }
 
-  addCoupon(coupon) {
+  async addCoupon(coupon) {
     const coupons = this.getCoupons();
     const code = coupon.code.trim().toUpperCase();
     if (coupons.some(c => c.code === code)) {
       return { success: false, message: 'Coupon code already exists.' };
     }
-    coupons.push({
+    const newCoupon = {
       code,
       discountType: coupon.discountType || 'percentage',
       discountValue: Number(coupon.discountValue),
       minOrder: Number(coupon.minOrder) || 0,
       description: coupon.description || ''
-    });
+    };
+    coupons.push(newCoupon);
     localStorage.setItem(this.STORAGE_KEYS.COUPONS, JSON.stringify(coupons));
     this.notify('coupons_updated', coupons);
+
+    // Sync to Supabase
+    if (this.supabase) {
+      try {
+        await this.supabase.from('coupons').insert([{
+          code: newCoupon.code,
+          discount_type: newCoupon.discountType,
+          discount_value: newCoupon.discountValue,
+          min_order: newCoupon.minOrder,
+          description: newCoupon.description
+        }]);
+      } catch (e) {
+        console.warn('Supabase addCoupon sync error:', e);
+      }
+    }
+
     return { success: true };
   }
 
-  deleteCoupon(code) {
+  async deleteCoupon(code) {
     let coupons = this.getCoupons();
     coupons = coupons.filter(c => c.code !== code);
     localStorage.setItem(this.STORAGE_KEYS.COUPONS, JSON.stringify(coupons));
     this.notify('coupons_updated', coupons);
+
+    // Sync to Supabase
+    if (this.supabase) {
+      try {
+        await this.supabase.from('coupons').delete().eq('code', code);
+      } catch (e) {
+        console.warn('Supabase deleteCoupon sync error:', e);
+      }
+    }
   }
 
   // --- REVIEWS ---
@@ -422,6 +659,16 @@ class StoreEngine {
 
       localStorage.setItem(this.STORAGE_KEYS.PRODUCTS, JSON.stringify(products));
       this.notify('products_updated', products);
+
+      // Sync to Supabase
+      if (this.supabase) {
+        this.supabase.from('products').update({
+          rating: prod.rating,
+          review_count: prod.reviewCount,
+          reviews: prod.reviews
+        }).eq('id', productId).catch(err => console.warn(err));
+      }
+
       return true;
     }
     return false;
