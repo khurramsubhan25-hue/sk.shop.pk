@@ -1,0 +1,14 @@
+# Operating System files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Logs
+*.log
+
+# Temporary / Cache
+.cache/
+tmp/
+temp/

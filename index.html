@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SK.SHOP.PK | Premium Beauty & Cosmetics Pakistan</title>
+  <meta name="description" content="SK.SHOP.PK - Pakistan's premier luxury online store for beauty, skincare, haircare, and personal care cosmetics for men and women. Nationwide Cash on Delivery. Call & WhatsApp: 0302 3912469.">
+  
+  <!-- Favicon (Official SK Monogram) -->
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
+
+  <!-- Google Fonts (Playfair Display & Outfit) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Luxury Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- LOADING SCREEN (With Official Brand Logo) -->
+  <div id="loading-screen" style="position:fixed; inset:0; background:#050A17; z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; transition:opacity 0.5s ease;">
+    <img src="assets/logo-badge.png" alt="SK.SHOP.PK" style="max-width:280px; margin-bottom:1.5rem; filter:drop-shadow(0 0 25px rgba(212,175,55,0.4));">
+    <div style="width:48px; height:48px; border:3px solid rgba(212,175,55,0.2); border-top-color:#D4AF37; border-radius:50%; animation:spin 0.8s linear infinite;"></div>
+    <p style="color:#D4AF37; font-family:'Playfair Display',serif; margin-top:1rem; letter-spacing:0.1em; font-size:0.9rem;">DISCOVER YOUR BEAUTY</p>
+  </div>
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <span style="color:#D4AF37;">✨</span>
+        <span>Nationwide Delivery across Pakistan | <strong>FREE</strong> on orders above Rs. 2,999</span>
+      </div>
+      <div class="top-bar-links">
+        <a href="tel:+923023912469" title="Call SK.SHOP.PK">
+          <i class="fa-solid fa-phone"></i>
+          <span>Call: 0302 3912469</span>
+        </a>
+        <a href="https://wa.me/923023912469?text=Hello%20SK.SHOP.PK!%20I%20am%20interested%20in%20your%20cosmetics%20products.%20Please%20share%20more%20details." target="_blank" title="WhatsApp SK.SHOP.PK">
+          <i class="fa-brands fa-whatsapp" style="color:#25D366;"></i>
+          <span>WhatsApp: 0302 3912469</span>
+        </a>
+        <a href="#order-tracking" style="color:#FFF;">
+          <i class="fa-solid fa-truck-fast"></i>
+          <span>Track Order</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY MAIN HEADER -->
+  <header class="main-header">
+    <div class="container header-inner">
+      <!-- Brand Logo -->
+      <a href="#home" class="brand-logo-wrap" title="SK.SHOP.PK Home">
+        <img src="assets/logo-badge.png" alt="SK.SHOP.PK Official Logo" class="brand-logo-img">
+      </a>
+
+      <!-- Search Bar with Live Suggestions Dropdown -->
+      <div class="header-search-wrap">
+        <div class="header-search-box">
+          <input type="text" id="global-search-input" class="header-search-input" placeholder="Search skincare, serums, perfumes, beard oils..." autocomplete="off">
+          <button id="global-search-btn" class="header-search-btn" title="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+        <div id="search-dropdown" class="search-results-dropdown"></div>
+      </div>
+
+      <!-- Header Actions (Wishlist, Cart, Admin / Account, Hamburger) -->
+      <div class="header-actions">
+        <a href="#wishlist" class="action-icon-btn" title="View Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span id="wishlist-badge" class="action-badge">0</span>
+        </a>
+
+        <button id="open-cart-drawer-btn" class="action-icon-btn" title="Open Shopping Cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span id="cart-badge" class="action-badge">0</span>
+        </button>
+
+        <a href="#admin" class="action-icon-btn" title="Admin Portal / Account">
+          <i class="fa-regular fa-user"></i>
+        </a>
+
+        <button id="mobile-menu-toggle" class="hamburger-btn" title="Open Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION CATEGORIES BAR -->
+  <nav class="nav-bar">
+    <div class="container">
+      <ul class="nav-links-wrap">
+        <li><a href="#home" class="nav-link active" data-nav="home">Home</a></li>
+        <li><a href="#shop" class="nav-link" data-nav="shop">Shop All</a></li>
+        <li><a href="#category/ladies" class="nav-link" data-nav="ladies">Ladies Collection</a></li>
+        <li><a href="#category/gents" class="nav-link" data-nav="gents">Gents Collection</a></li>
+        <li><a href="#category/skincare" class="nav-link" data-nav="skincare">Skincare</a></li>
+        <li><a href="#category/haircare" class="nav-link" data-nav="haircare">Haircare</a></li>
+        <li><a href="#category/fragrances" class="nav-link" data-nav="fragrances">Fragrances</a></li>
+        <li><a href="#shop?filter=new" class="nav-link" data-nav="new">New Arrivals <span class="nav-link-badge">New</span></a></li>
+        <li><a href="#shop?filter=bestseller" class="nav-link" data-nav="bestseller">Best Sellers <span class="nav-link-badge">Hot</span></a></li>
+        <li><a href="#contact" class="nav-link" data-nav="contact">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MOBILE SLIDE-OUT MENU -->
+  <div id="mobile-menu-overlay" style="position:fixed; inset:0; background:rgba(4,7,15,0.7); backdrop-filter:blur(4px); z-index:1500; opacity:0; visibility:hidden; transition:all 0.3s ease;"></div>
+  <div id="mobile-menu-drawer" style="position:fixed; top:0; left:0; width:300px; height:100vh; background:#0A1128; z-index:1510; transform:translateX(-100%); transition:transform 0.35s ease; padding:1.5rem; display:flex; flex-direction:column; border-right:2px solid #D4AF37;">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid rgba(212,175,55,0.25);">
+      <img src="assets/logo-badge.png" alt="SK.SHOP.PK" style="height:48px;">
+      <button id="close-mobile-menu" style="color:#FFF; font-size:1.3rem;"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div style="flex:1; overflow-y:auto;">
+      <ul style="display:flex; flex-direction:column; gap:1rem;">
+        <li><a href="#home" class="mobile-nav-item" style="color:#FFF; font-weight:600; display:block; padding:0.4rem 0;">Home</a></li>
+        <li><a href="#shop" class="mobile-nav-item" style="color:#FFF; font-weight:600; display:block; padding:0.4rem 0;">Shop All Products</a></li>
+        <li><a href="#category/ladies" class="mobile-nav-item" style="color:#F7E7A9; font-weight:600; display:block; padding:0.4rem 0;">Ladies Collection</a></li>
+        <li><a href="#category/gents" class="mobile-nav-item" style="color:#F7E7A9; font-weight:600; display:block; padding:0.4rem 0;">Gents Collection</a></li>
+        <li><a href="#category/unisex" class="mobile-nav-item" style="color:#F7E7A9; font-weight:600; display:block; padding:0.4rem 0;">Unisex Collection</a></li>
+        <li><a href="#category/skincare" class="mobile-nav-item" style="color:#FFF; font-weight:600; display:block; padding:0.4rem 0;">Skincare Essentials</a></li>
+        <li><a href="#category/haircare" class="mobile-nav-item" style="color:#FFF; font-weight:600; display:block; padding:0.4rem 0;">Haircare & Scalp</a></li>
+        <li><a href="#category/fragrances" class="mobile-nav-item" style="color:#FFF; font-weight:600; display:block; padding:0.4rem 0;">Fragrances & Ouds</a></li>
+        <li><a href="#order-tracking" class="mobile-nav-item" style="color:#FFF; font-weight:600; display:block; padding:0.4rem 0;">Track Your Order</a></li>
+        <li><a href="#contact" class="mobile-nav-item" style="color:#FFF; font-weight:600; display:block; padding:0.4rem 0;">Contact Us</a></li>
+        <li><a href="#admin" class="mobile-nav-item" style="color:#D4AF37; font-weight:700; display:block; padding:0.4rem 0;">Admin Portal</a></li>
+      </ul>
+    </div>
+    <div style="padding-top:1rem; border-top:1px solid rgba(212,175,55,0.25);">
+      <a href="tel:+923023912469" class="btn btn-secondary btn-sm" style="width:100%; margin-bottom:0.6rem;">
+        <i class="fa-solid fa-phone"></i> Call 0302 3912469
+      </a>
+      <a href="https://wa.me/923023912469?text=Hello%20SK.SHOP.PK!%20I%20am%20interested%20in%20your%20cosmetics%20products.%20Please%20share%20more%20details." target="_blank" class="btn btn-whatsapp btn-sm" style="width:100%;">
+        <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <!-- MAIN APP CONTAINER FOR SPA VIEWS -->
+  <main id="app-viewport">
+
+    <!-- 1. HOMEPAGE VIEW (#home) -->
+    <section id="view-home" class="page-view active">
+      
+      <!-- HERO SECTION -->
+      <div class="hero-section">
+        <div class="hero-bg-overlay"></div>
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <div class="hero-pill">
+              <i class="fa-solid fa-crown" style="color:#D4AF37;"></i>
+              <span>Official SK.SHOP.PK Store</span>
+            </div>
+            <h1 class="hero-title">
+              Discover Your Beauty with <span class="gold-text">SK.SHOP.PK</span>
+            </h1>
+            <p class="hero-subtitle">
+              Your Ultimate Destination for Beauty, Skincare & Personal Care in Pakistan. Formulated with pure botanical actives, 24K gold elixirs, and enchanting oriental scents.
+            </p>
+            <div class="hero-buttons">
+              <a href="#shop" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-bag-shopping"></i> Shop Now
+              </a>
+              <a href="#category/ladies" class="btn btn-secondary btn-lg">
+                Explore Collections
+              </a>
+            </div>
+            <div class="hero-trust-badges">
+              <div class="hero-trust-item">
+                <i class="fa-solid fa-certificate"></i>
+                <span>100% Original Products</span>
+              </div>
+              <div class="hero-trust-item">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+                <span>Cash on Delivery</span>
+              </div>
+              <div class="hero-trust-item">
+                <i class="fa-solid fa-truck-fast"></i>
+                <span>Fast Nationwide Shipping</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual-wrap">
+            <div class="hero-frame">
+              <div class="hero-frame-inner">
+                <img src="assets/hero-banner.jpg" alt="Luxury Cosmetics Collection">
+              </div>
+            </div>
+            <div class="hero-floating-card">
+              <div class="hero-floating-icon">
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div>
+                <div style="font-weight:700; font-size:0.95rem;">Pakistan's #1 Luxury Choice</div>
+                <div style="font-size:0.8rem; color:#D4AF37;">4.9 / 5 Rating (1,200+ Reviews)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHOP BY CATEGORY SECTION -->
+      <div style="padding: 5rem 0 3rem; background: #FFF;">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-pill">Curated Luxuries</span>
+            <h2 class="section-title">Shop by Category</h2>
+            <p class="section-subtitle">Specially formulated cosmetic care for women and men across Pakistan</p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="categories-grid">
+            <!-- Ladies -->
+            <div class="category-card" onclick="location.hash='#category/ladies'">
+              <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=80" alt="Ladies Collection" class="category-card-img">
+              <div class="category-card-overlay">
+                <span style="font-size:0.8rem; text-transform:uppercase; color:#D4AF37; font-weight:700; letter-spacing:0.08em;">For Women</span>
+                <h3 class="category-card-title">Ladies Collection</h3>
+                <p class="category-card-desc">Radiant Serums, Saffron Creams, Hair Spa Masks & Lip Care</p>
+                <span class="category-card-btn">Explore Ladies Range <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+
+            <!-- Gents -->
+            <div class="category-card" onclick="location.hash='#category/gents'">
+              <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80" alt="Gents Collection" class="category-card-img">
+              <div class="category-card-overlay">
+                <span style="font-size:0.8rem; text-transform:uppercase; color:#D4AF37; font-weight:700; letter-spacing:0.08em;">For Men</span>
+                <h3 class="category-card-title">Gents Collection</h3>
+                <p class="category-card-desc">Charcoal Detox, Oud Beard Oils, Hair Pomade & Men's Sunscreen</p>
+                <span class="category-card-btn">Explore Gents Range <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+
+            <!-- Unisex / Fragrances -->
+            <div class="category-card" onclick="location.hash='#category/unisex'">
+              <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80" alt="Unisex & Fragrances" class="category-card-img">
+              <div class="category-card-overlay">
+                <span style="font-size:0.8rem; text-transform:uppercase; color:#D4AF37; font-weight:700; letter-spacing:0.08em;">Royal Sillage</span>
+                <h3 class="category-card-title">Fragrances & Unisex</h3>
+                <p class="category-card-desc">Imperial Cambodian Ouds, Pure Rose Distillates & Bath Luxuries</p>
+                <span class="category-card-btn">Explore Fragrances <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BEST SELLERS SECTION -->
+      <div style="padding: 4rem 0; background: #F8FAFC;">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-pill">Most Loved by Customers</span>
+            <h2 class="section-title">Best Selling Products</h2>
+            <p class="section-subtitle">Our most cherished beauty essentials backed by verified Pakistani reviews</p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div id="home-bestsellers-grid" class="products-grid"></div>
+
+          <div style="text-align:center; margin-top:3rem;">
+            <a href="#shop" class="btn btn-dark btn-lg">View All Products</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SPECIAL OFFERS / FLASH DEAL BANNER -->
+      <div class="container">
+        <div class="promo-banner">
+          <div class="promo-grid">
+            <div>
+              <span class="promo-tag">Limited Time Promotional Offer</span>
+              <h2 class="promo-title">Royal Glamour Sale — Save Up to 35% Off</h2>
+              <p style="color:rgba(255,255,255,0.85); font-size:1.05rem;">
+                Unlock luxury radiance with our limited-edition 24K Gold and Pure Oud Collections. Free Nationwide delivery included.
+              </p>
+              
+              <div class="countdown-timer">
+                <div class="countdown-box">
+                  <div id="deal-days" class="countdown-val">02</div>
+                  <div class="countdown-lbl">Days</div>
+                </div>
+                <div class="countdown-box">
+                  <div id="deal-hours" class="countdown-val">14</div>
+                  <div class="countdown-lbl">Hours</div>
+                </div>
+                <div class="countdown-box">
+                  <div id="deal-minutes" class="countdown-val">42</div>
+                  <div class="countdown-lbl">Mins</div>
+                </div>
+                <div class="countdown-box">
+                  <div id="deal-seconds" class="countdown-val">30</div>
+                  <div class="countdown-lbl">Secs</div>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                <a href="#shop?filter=offer" class="btn btn-primary">Claim Offer Now</a>
+                <a href="https://wa.me/923023912469?text=Hello%20SK.SHOP.PK!%20I%20want%20to%20avail%20the%20Special%20Offer.%20Please%20guide%20me." target="_blank" class="btn btn-whatsapp">
+                  <i class="fa-brands fa-whatsapp"></i> Inquire on WhatsApp
+                </a>
+              </div>
+            </div>
+
+            <div style="text-align:center;">
+              <img src="assets/logo.jpg" alt="SK.SHOP.PK Emblem" style="max-width:320px; margin:0 auto; border-radius:12px; box-shadow:0 8px 30px rgba(0,0,0,0.5); border:1px solid rgba(212,175,55,0.4);">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW ARRIVALS SECTION -->
+      <div style="padding: 4rem 0; background: #FFF;">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-pill">Fresh Formulations</span>
+            <h2 class="section-title">New Arrivals</h2>
+            <p class="section-subtitle">Discover our latest clinical and botanical beauty creations</p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div id="home-new-arrivals-grid" class="products-grid"></div>
+        </div>
+      </div>
+
+      <!-- WHY CHOOSE SK.SHOP.PK -->
+      <div style="padding: 5rem 0; background: #F8FAFC;">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-pill">The SK Guarantee</span>
+            <h2 class="section-title">Why Choose SK.SHOP.PK?</h2>
+            <p class="section-subtitle">Dedicated to bringing authentic luxury personal care directly to your doorstep</p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-box">
+              <div class="feature-icon-wrap"><i class="fa-solid fa-award"></i></div>
+              <h4 class="feature-title">100% Authentic Products</h4>
+              <p class="feature-desc">Every product is crafted with genuine certified ingredients, pure oils, and dermatologist-tested formulas.</p>
+            </div>
+            <div class="feature-box">
+              <div class="feature-icon-wrap"><i class="fa-solid fa-money-bill-wave"></i></div>
+              <h4 class="feature-title">Cash on Delivery (COD)</h4>
+              <p class="feature-desc">Pay with cash upon package arrival anywhere across Pakistan through TCS, Leopards, and Trax couriers.</p>
+            </div>
+            <div class="feature-box">
+              <div class="feature-icon-wrap"><i class="fa-brands fa-whatsapp"></i></div>
+              <h4 class="feature-title">Direct WhatsApp Support</h4>
+              <p class="feature-desc">Reach our beauty consultation team anytime on <strong>0302 3912469</strong> for order queries and skin guidance.</p>
+            </div>
+            <div class="feature-box">
+              <div class="feature-icon-wrap"><i class="fa-solid fa-shield-halved"></i></div>
+              <h4 class="feature-title">Safe & Fresh Packaging</h4>
+              <p class="feature-desc">Double-bubble wrapped and sealed in tamper-proof luxury packaging to guarantee pristine quality.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CUSTOMER REVIEWS & TESTIMONIALS -->
+      <div style="padding: 5rem 0; background: #FFF;">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-pill">Verified Feedback</span>
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Real experiences from customers across Karachi, Lahore, Islamabad, and beyond</p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="reviews-grid">
+            <div class="review-card">
+              <div class="review-stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="review-text">"I ordered the 24K Gold Serum and Saffron Face Cream. The packaging is pure luxury and the glow is real! Received my parcel in Lahore within 2 days with Cash on Delivery."</p>
+              <div class="review-author">
+                <div>
+                  <div class="review-name">Ayesha Khan</div>
+                  <div style="font-size:0.75rem; color:#64748B;">Gulberg, Lahore</div>
+                </div>
+                <div class="review-verified"><i class="fa-solid fa-circle-check"></i> Verified Buyer</div>
+              </div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="review-text">"The Royal Oud Beard Oil and Midnight Sovereign perfume are exceptional. The oud aroma stays on clothes for over 12 hours. Will be recommending SK.SHOP.PK to all my friends!"</p>
+              <div class="review-author">
+                <div>
+                  <div class="review-name">Hamza Tariq</div>
+                  <div style="font-size:0.75rem; color:#64748B;">Sector F-7, Islamabad</div>
+                </div>
+                <div class="review-verified"><i class="fa-solid fa-circle-check"></i> Verified Buyer</div>
+              </div>
+            </div>
+
+            <div class="review-card">
+              <div class="review-stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="review-text">"I messaged their official number 0302 3912469 on WhatsApp and the customer service was so helpful in suggesting the best products for my sensitive skin. Five stars!"</p>
+              <div class="review-author">
+                <div>
+                  <div class="review-name">Dr. Maira Siddiqui</div>
+                  <div style="font-size:0.75rem; color:#64748B;">DHA Phase 6, Karachi</div>
+                </div>
+                <div class="review-verified"><i class="fa-solid fa-circle-check"></i> Verified Buyer</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEWSLETTER SUBSCRIPTION -->
+      <div class="newsletter-section">
+        <div class="container">
+          <div class="newsletter-box">
+            <span style="color:#D4AF37; font-weight:700; text-transform:uppercase; font-size:0.85rem; letter-spacing:0.1em;">VIP Beauty Club</span>
+            <h3 style="font-family:'Playfair Display',serif; font-size:2.2rem; margin:0.5rem 0 1rem; color:#FFF;">
+              Enjoy <span class="gold-text">10% Off</span> Your First Order
+            </h3>
+            <p style="color:rgba(255,255,255,0.8); font-size:0.95rem;">
+              Subscribe with your mobile or email to receive instant voucher code <strong>WELCOME10</strong> and priority access to exclusive luxury cosmetic launches.
+            </p>
+            <form id="newsletter-form" class="newsletter-form" onsubmit="event.preventDefault(); window.app.handleNewsletterSubmit(this);">
+              <input type="text" class="newsletter-input" placeholder="Enter your WhatsApp number or email..." required>
+              <button type="submit" class="btn btn-primary">Join VIP Club</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 2. SHOP / CATALOG VIEW (#shop) -->
+    <section id="view-shop" class="page-view">
+      <div class="category-page-banner">
+        <div class="container">
+          <span style="color:#D4AF37; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; font-size:0.85rem;">Luxury Beauty Catalog</span>
+          <h1 id="shop-page-title" class="category-banner-title">All Cosmetics & Beauty Products</h1>
+          <p id="shop-page-tagline" class="category-banner-tagline">Browse our full range of certified Pakistani and international beauty formulations</p>
+        </div>
+      </div>
+
+      <div class="container" style="padding-bottom:5rem;">
+        <!-- Filters & Sorting Bar -->
+        <div class="shop-filter-bar">
+          <div class="filter-pills" id="shop-gender-filters">
+            <button class="filter-pill active" onclick="window.app.setShopFilter('gender', 'all')">All Products</button>
+            <button class="filter-pill" onclick="window.app.setShopFilter('gender', 'ladies')">Ladies Collection</button>
+            <button class="filter-pill" onclick="window.app.setShopFilter('gender', 'gents')">Gents Collection</button>
+            <button class="filter-pill" onclick="window.app.setShopFilter('gender', 'unisex')">Unisex Collection</button>
+          </div>
+
+          <div class="shop-sort-wrap">
+            <label for="shop-sort-select">Sort By:</label>
+            <select id="shop-sort-select" class="sort-select" onchange="window.app.handleSortChange(this.value)">
+              <option value="featured">Featured / Recommended</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating">Top Customer Rated</option>
+              <option value="newest">Newest Arrivals</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Secondary category pills -->
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:2rem;" id="shop-category-pills">
+          <button class="filter-pill active" onclick="window.app.setShopFilter('category', 'all')">All Types</button>
+          <button class="filter-pill" onclick="window.app.setShopFilter('category', 'skincare')">Skincare</button>
+          <button class="filter-pill" onclick="window.app.setShopFilter('category', 'haircare')">Haircare</button>
+          <button class="filter-pill" onclick="window.app.setShopFilter('category', 'fragrances')">Fragrances</button>
+          <button class="filter-pill" onclick="window.app.setShopFilter('category', 'bodycare')">Body Care</button>
+          <button class="filter-pill" onclick="window.app.setShopFilter('category', 'makeup')">Makeup</button>
+          <button class="filter-pill" onclick="window.app.setShopFilter('category', 'grooming')">Men's Grooming</button>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="shop-products-grid" class="products-grid"></div>
+
+        <div id="shop-empty-state" style="display:none; text-align:center; padding:5rem 0;">
+          <i class="fa-solid fa-magnifying-glass" style="font-size:3rem; color:#CBD5E1; margin-bottom:1rem;"></i>
+          <h3 style="font-family:'Playfair Display',serif; color:#0A1128;">No products found</h3>
+          <p style="color:#64748B; margin-top:0.5rem;">Try adjusting your search criteria or resetting filters.</p>
+          <button class="btn btn-secondary" style="margin-top:1.5rem;" onclick="window.app.resetAllFilters()">Reset All Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CATEGORY VIEW (#category/:name) -->
+    <section id="view-category" class="page-view">
+      <div class="category-page-banner">
+        <div class="container">
+          <div style="font-size:0.85rem; color:#D4AF37; margin-bottom:0.5rem;">
+            <a href="#home" style="color:rgba(255,255,255,0.7);">Home</a> / <span id="cat-crumb-name">Category</span>
+          </div>
+          <h1 id="cat-page-title" class="category-banner-title">Category Collection</h1>
+          <p id="cat-page-desc" class="category-banner-tagline">Category description</p>
+        </div>
+      </div>
+
+      <div class="container" style="padding-bottom:5rem;">
+        <!-- Subcategories List -->
+        <div id="cat-subcategories-bar" style="display:flex; gap:0.5rem; flex-wrap:wrap; margin:2rem 0;"></div>
+
+        <!-- Products Grid -->
+        <div id="category-products-grid" class="products-grid"></div>
+      </div>
+    </section>
+
+    <!-- 4. WISHLIST VIEW (#wishlist) -->
+    <section id="view-wishlist" class="page-view">
+      <div class="category-page-banner">
+        <div class="container">
+          <span style="color:#D4AF37; font-weight:700; text-transform:uppercase; font-size:0.85rem; letter-spacing:0.1em;">Your Saved Favorites</span>
+          <h1 class="category-banner-title">My Wishlist</h1>
+          <p class="category-banner-tagline">Items you have bookmarked for future purchases</p>
+        </div>
+      </div>
+
+      <div class="container" style="padding:3.5rem 0 5rem;">
+        <div id="wishlist-grid" class="products-grid"></div>
+        <div id="wishlist-empty" style="text-align:center; padding:5rem 0;">
+          <i class="fa-regular fa-heart" style="font-size:3.5rem; color:#CBD5E1; margin-bottom:1rem;"></i>
+          <h3 style="font-family:'Playfair Display',serif; color:#0A1128;">Your Wishlist is Empty</h3>
+          <p style="color:#64748B; margin-top:0.5rem;">Explore our luxury catalog and click the heart icon on any product to save it here.</p>
+          <a href="#shop" class="btn btn-primary" style="margin-top:1.5rem;">Explore Products</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CHECKOUT VIEW (#checkout) -->
+    <section id="view-checkout" class="page-view">
+      <div class="category-page-banner" style="padding:2.5rem 0;">
+        <div class="container">
+          <h1 class="category-banner-title" style="font-size:2.2rem;">Secure Checkout</h1>
+          <p class="category-banner-tagline">Complete your order with Cash on Delivery or Bank Transfer across Pakistan</p>
+        </div>
+      </div>
+
+      <div class="container">
+        <form id="checkout-form" onsubmit="event.preventDefault(); window.app.handleCheckoutSubmit(this);">
+          <div class="checkout-grid">
+            
+            <!-- Left Column: Customer & Shipping Details -->
+            <div>
+              <div class="checkout-card">
+                <h3 class="checkout-card-title">
+                  <i class="fa-solid fa-user" style="color:#D4AF37;"></i> 1. Customer Information
+                </h3>
+                
+                <div class="form-group">
+                  <label class="form-label">Full Name <span class="required">*</span></label>
+                  <input type="text" name="customerName" class="form-control" placeholder="e.g. Ayesha Khan / Muhammad Bilal" required>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Mobile Number <span class="required">*</span></label>
+                    <input type="tel" name="phone" id="checkout-phone" class="form-control" placeholder="0300 1234567" required pattern="^(03[0-9]{9}|\+923[0-9]{9})$">
+                    <span style="font-size:0.75rem; color:#64748B;">For courier delivery updates</span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">WhatsApp Number <span class="required">*</span></label>
+                    <input type="tel" name="whatsapp" id="checkout-whatsapp" class="form-control" placeholder="0300 1234567" required>
+                    <div style="margin-top:0.35rem; display:flex; align-items:center; gap:0.4rem; font-size:0.78rem;">
+                      <input type="checkbox" id="same-whatsapp-chk" onchange="window.app.syncPhoneToWhatsApp(this.checked)">
+                      <label for="same-whatsapp-chk">Same as Mobile Number</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="checkout-card">
+                <h3 class="checkout-card-title">
+                  <i class="fa-solid fa-location-dot" style="color:#D4AF37;"></i> 2. Delivery Address (Pakistan)
+                </h3>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Destination City <span class="required">*</span></label>
+                    <select name="city" id="checkout-city" class="form-control" required></select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Postal / Zip Code (Optional)</label>
+                    <input type="text" name="postalCode" class="form-control" placeholder="e.g. 54000">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Complete Street Address / House / Apartment / Plaza <span class="required">*</span></label>
+                  <textarea name="address" class="form-control" rows="3" placeholder="e.g. House # 12-A, Street 4, Sector F-8/1, Near Commercial Market" required></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Order Notes / Landmark Instructions (Optional)</label>
+                  <input type="text" name="notes" class="form-control" placeholder="e.g. Call upon reaching landmark, deliver after 2 PM">
+                </div>
+              </div>
+
+              <div class="checkout-card">
+                <h3 class="checkout-card-title">
+                  <i class="fa-solid fa-credit-card" style="color:#D4AF37;"></i> 3. Select Payment Method
+                </h3>
+
+                <!-- Cash on Delivery -->
+                <label class="payment-option-card selected" id="opt-cod">
+                  <input type="radio" name="paymentMethod" value="Cash on Delivery (COD)" checked onclick="window.app.selectPaymentMethod('cod')">
+                  <div style="flex:1;">
+                    <div style="font-weight:700; color:#0A1128; font-size:1rem; display:flex; align-items:center; justify-content:space-between;">
+                      <span>Cash on Delivery (COD)</span>
+                      <span style="font-size:0.75rem; background:#D1FAE5; color:#065F46; padding:0.15rem 0.5rem; border-radius:4px; font-weight:700;">RECOMMENDED</span>
+                    </div>
+                    <p style="font-size:0.85rem; color:#64748B; margin-top:0.35rem;">
+                      Pay safely in cash to the courier representative when the parcel is handed over at your doorstep.
+                    </p>
+                  </div>
+                </label>
+
+                <!-- Bank Transfer / JazzCash / EasyPaisa -->
+                <label class="payment-option-card" id="opt-online">
+                  <input type="radio" name="paymentMethod" value="Online Bank Transfer / JazzCash / EasyPaisa" onclick="window.app.selectPaymentMethod('online')">
+                  <div style="flex:1;">
+                    <div style="font-weight:700; color:#0A1128; font-size:1rem;">
+                      Bank Transfer / JazzCash / EasyPaisa
+                    </div>
+                    <p style="font-size:0.85rem; color:#64748B; margin-top:0.35rem;">
+                      Transfer directly to our official business account. Account details will be presented after order placement. Send screenshot via WhatsApp to 0302 3912469.
+                    </p>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Right Column: Order Summary & Placement -->
+            <div>
+              <div class="checkout-card" style="position:sticky; top:100px;">
+                <h3 class="checkout-card-title">
+                  <i class="fa-solid fa-receipt" style="color:#D4AF37;"></i> Order Summary
+                </h3>
+
+                <!-- Cart Items List -->
+                <div id="checkout-items-list" style="max-height:280px; overflow-y:auto; margin-bottom:1.25rem;"></div>
+
+                <!-- Coupon Field -->
+                <div style="margin-bottom:1.5rem; padding-bottom:1.25rem; border-bottom:1px solid #E2E8F0;">
+                  <label class="form-label">Have a Discount Coupon?</label>
+                  <div style="display:flex; gap:0.5rem;">
+                    <input type="text" id="checkout-coupon-input" class="form-control" placeholder="e.g. WELCOME10" style="text-transform:uppercase;">
+                    <button type="button" class="btn btn-dark btn-sm" onclick="window.app.applyCouponFromCheckout()">Apply</button>
+                  </div>
+                  <div id="coupon-feedback" style="font-size:0.8rem; margin-top:0.4rem;"></div>
+                </div>
+
+                <!-- Price Breakdown -->
+                <div style="font-size:0.92rem; color:#475569; display:flex; flex-direction:column; gap:0.6rem;">
+                  <div style="display:flex; justify-content:space-between;">
+                    <span>Subtotal:</span>
+                    <strong id="checkout-subtotal" style="color:#0A1128;">Rs. 0</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between;">
+                    <span>Nationwide Shipping:</span>
+                    <strong id="checkout-shipping" style="color:#0A1128;">Rs. 0</strong>
+                  </div>
+                  <div id="checkout-discount-row" style="display:none; justify-content:space-between; color:#10B981;">
+                    <span>Discount:</span>
+                    <strong id="checkout-discount">-Rs. 0</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; font-size:1.3rem; font-weight:800; color:#0A1128; padding-top:0.75rem; border-top:2px dashed #CBD5E1; margin-top:0.5rem;">
+                    <span>Grand Total:</span>
+                    <span id="checkout-grand-total" class="gold-text">Rs. 0</span>
+                  </div>
+                </div>
+
+                <button type="submit" id="place-order-btn" class="btn btn-primary btn-lg" style="width:100%; margin-top:1.75rem;">
+                  <i class="fa-solid fa-lock"></i> Place Order (Cash on Delivery)
+                </button>
+
+                <div style="text-align:center; font-size:0.78rem; color:#64748B; margin-top:1rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
+                  <i class="fa-solid fa-shield-halved" style="color:#10B981;"></i>
+                  <span>Your information is encrypted & protected.</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- 6. ORDER CONFIRMATION VIEW (#order-confirmation/:id) -->
+    <section id="view-order-confirmation" class="page-view">
+      <div class="container">
+        <div class="order-success-card">
+          <div class="success-icon-wrap">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <span style="color:#D4AF37; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; font-size:0.85rem;">Order Successfully Placed</span>
+          <h2 style="font-family:'Playfair Display',serif; font-size:2.2rem; color:#0A1128; margin:0.35rem 0;">
+            Thank You for Shopping with <span class="gold-text">SK.SHOP.PK</span>!
+          </h2>
+          <p style="color:#64748B; font-size:0.95rem;">
+            Your order has been recorded in our system. Our team is preparing your package for safe dispatch.
+          </p>
+
+          <div class="order-id-badge" id="confirmed-order-id">
+            Order ID: SK-2026-0000
+          </div>
+
+          <!-- Order Summary Details Box -->
+          <div id="confirmed-order-details" style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:12px; padding:1.5rem; text-align:left; margin:1.5rem 0;"></div>
+
+          <!-- Direct WhatsApp Confirmation CTA (Requirement #7 & #9) -->
+          <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:2rem;">
+            <a id="confirm-whatsapp-btn" href="#" target="_blank" class="btn btn-whatsapp btn-lg">
+              <i class="fa-brands fa-whatsapp" style="font-size:1.3rem;"></i>
+              <span>Confirm Order Instantly via WhatsApp</span>
+            </a>
+
+            <div style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap;">
+              <button onclick="window.print()" class="btn btn-dark btn-sm">
+                <i class="fa-solid fa-print"></i> Print Invoice Receipt
+              </button>
+              <a href="#order-tracking" class="btn btn-secondary btn-sm">
+                <i class="fa-solid fa-truck-fast"></i> Track Shipment
+              </a>
+              <a href="#shop" class="btn btn-secondary btn-sm">
+                Continue Shopping
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. ORDER TRACKING VIEW (#order-tracking) -->
+    <section id="view-order-tracking" class="page-view">
+      <div class="category-page-banner">
+        <div class="container">
+          <span style="color:#D4AF37; font-weight:700; text-transform:uppercase; font-size:0.85rem; letter-spacing:0.1em;">Courier Status Tracker</span>
+          <h1 class="category-banner-title">Track Your Order</h1>
+          <p class="category-banner-tagline">Enter your Order ID (e.g. SK-2026-9812) or Mobile Number to check real-time package updates</p>
+        </div>
+      </div>
+
+      <div class="container" style="max-width:760px; padding:3.5rem 0 5rem;">
+        <div class="checkout-card">
+          <form onsubmit="event.preventDefault(); window.app.handleOrderTrackSubmit();">
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <input type="text" id="track-input" class="form-control" style="flex:1; min-width:260px;" placeholder="Enter Order ID or 11-Digit Mobile Number..." required>
+              <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-magnifying-glass"></i> Track Package
+              </button>
+            </div>
+          </form>
+
+          <div id="tracking-result-box" style="margin-top:2rem; display:none;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. CONTACT US VIEW (#contact) -->
+    <section id="view-contact" class="page-view">
+      <div class="category-page-banner">
+        <div class="container">
+          <span style="color:#D4AF37; font-weight:700; text-transform:uppercase; font-size:0.85rem; letter-spacing:0.1em;">We Are Here For You</span>
+          <h1 class="category-banner-title">Contact SK.SHOP.PK</h1>
+          <p class="category-banner-tagline">Official Pakistani beauty advisors available 7 days a week via Phone and WhatsApp</p>
+        </div>
+      </div>
+
+      <div class="container" style="padding:4rem 0 5rem;">
+        <div style="display:grid; grid-template-columns:1fr 1.3fr; gap:3rem;">
+          
+          <!-- Contact Info Cards -->
+          <div>
+            <h3 style="font-family:'Playfair Display',serif; font-size:1.8rem; color:#0A1128; margin-bottom:1.5rem;">
+              Get in Touch with Our Team
+            </h3>
+
+            <!-- CALL NOW (Req #7) -->
+            <div class="feature-box" style="text-align:left; display:flex; align-items:center; gap:1.25rem; margin-bottom:1.25rem;">
+              <div class="feature-icon-wrap" style="margin:0;"><i class="fa-solid fa-phone"></i></div>
+              <div style="flex:1;">
+                <div style="font-size:0.8rem; color:#64748B; text-transform:uppercase; font-weight:700;">Direct Phone Line</div>
+                <div style="font-size:1.25rem; font-weight:800; color:#0A1128;">0302 3912469</div>
+                <a href="tel:+923023912469" class="btn btn-primary btn-sm" style="margin-top:0.5rem;">
+                  <i class="fa-solid fa-phone-volume"></i> CALL NOW
+                </a>
+              </div>
+            </div>
+
+            <!-- WHATSAPP (Req #7) -->
+            <div class="feature-box" style="text-align:left; display:flex; align-items:center; gap:1.25rem; margin-bottom:1.25rem; border-color:#25D366;">
+              <div class="feature-icon-wrap" style="margin:0; background:rgba(37,211,102,0.15); color:#25D366; border-color:rgba(37,211,102,0.3);">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <div style="flex:1;">
+                <div style="font-size:0.8rem; color:#64748B; text-transform:uppercase; font-weight:700;">Official WhatsApp</div>
+                <div style="font-size:1.25rem; font-weight:800; color:#0A1128;">0302 3912469</div>
+                <a href="https://wa.me/923023912469?text=Hello%20SK.SHOP.PK!%20I%20am%20interested%20in%20your%20cosmetics%20products.%20Please%20share%20more%20details." target="_blank" class="btn btn-whatsapp btn-sm" style="margin-top:0.5rem;">
+                  <i class="fa-brands fa-whatsapp"></i> CHAT ON WHATSAPP
+                </a>
+              </div>
+            </div>
+
+            <!-- Business Email Placeholder -->
+            <div class="feature-box" style="text-align:left; display:flex; align-items:center; gap:1.25rem; margin-bottom:1.25rem;">
+              <div class="feature-icon-wrap" style="margin:0;"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <div style="font-size:0.8rem; color:#64748B; text-transform:uppercase; font-weight:700;">Business Email Placeholder</div>
+                <div style="font-size:1rem; font-weight:700; color:#0A1128;">info@sk.shop.pk</div>
+                <div style="font-size:0.75rem; color:#94A3B8;">(Official email placeholder for partnership inquiries)</div>
+              </div>
+            </div>
+
+            <!-- Social Media Placeholders -->
+            <div style="margin-top:2rem;">
+              <div style="font-size:0.85rem; font-weight:700; color:#0A1128; margin-bottom:0.75rem;">Official Social Media Channels</div>
+              <div style="display:flex; gap:0.75rem;">
+                <a href="#instagram" class="btn btn-dark btn-sm"><i class="fa-brands fa-instagram"></i> Instagram Placeholder</a>
+                <a href="#facebook" class="btn btn-dark btn-sm"><i class="fa-brands fa-facebook"></i> Facebook Placeholder</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="checkout-card">
+            <h3 class="checkout-card-title">
+              <i class="fa-solid fa-paper-plane" style="color:#D4AF37;"></i> Send Us a Message
+            </h3>
+            <form onsubmit="event.preventDefault(); window.app.handleContactFormSubmit(this);">
+              <div class="form-group">
+                <label class="form-label">Your Name <span class="required">*</span></label>
+                <input type="text" name="name" class="form-control" placeholder="Enter your full name" required>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Phone / WhatsApp Number <span class="required">*</span></label>
+                  <input type="tel" name="phone" class="form-control" placeholder="0300 1234567" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email Address (Optional)</label>
+                  <input type="email" name="email" class="form-control" placeholder="yourname@gmail.com">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Subject</label>
+                <select name="subject" class="form-control">
+                  <option>Product Inquiries & Recommendations</option>
+                  <option>Order Status & Tracking</option>
+                  <option>Wholesale & Bulk Orders</option>
+                  <option>Return & Refund Request</option>
+                  <option>General Feedback</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Your Message <span class="required">*</span></label>
+                <textarea name="message" class="form-control" rows="4" placeholder="How can we assist you with our cosmetics today?" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">
+                <i class="fa-brands fa-whatsapp"></i> Send via WhatsApp / Submit
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. ADMIN DASHBOARD VIEW (#admin) -->
+    <section id="view-admin" class="page-view">
+      <div class="container admin-layout">
+        
+        <!-- Admin Login Screen (If not authenticated) -->
+        <div id="admin-login-box" style="max-width:440px; margin:4rem auto; background:#FFF; border-radius:18px; border:2px solid #D4AF37; padding:2.5rem; box-shadow:0 10px 30px rgba(0,0,0,0.15); text-align:center;">
+          <img src="assets/logo-badge.png" alt="SK.SHOP.PK Admin" style="max-width:200px; margin:0 auto 1.5rem;">
+          <h2 style="font-family:'Playfair Display',serif; color:#0A1128; font-size:1.8rem; margin-bottom:0.35rem;">Admin Secure Portal</h2>
+          <p style="color:#64748B; font-size:0.85rem; margin-bottom:1.5rem;">Authorized personnel only. Manage products, orders, and store analytics.</p>
+          
+          <form onsubmit="event.preventDefault(); window.app.handleAdminLogin();">
+            <div class="form-group" style="text-align:left;">
+              <label class="form-label">Admin Security Password</label>
+              <input type="password" id="admin-password-input" class="form-control" placeholder="Enter password (default: skadmin2026)" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%; margin-top:0.75rem;">
+              <i class="fa-solid fa-shield-halved"></i> Login to Dashboard
+            </button>
+          </form>
+          <div style="font-size:0.75rem; color:#94A3B8; margin-top:1.25rem;">
+            Default demo credential: <code>skadmin2026</code>
+          </div>
+        </div>
+
+        <!-- Protected Admin Dashboard Content (Rendered when logged in) -->
+        <div id="admin-dashboard-content" style="display:none;">
+          <div class="admin-header-bar">
+            <div style="display:flex; align-items:center; gap:1rem;">
+              <img src="assets/logo-badge.png" alt="SK.SHOP.PK" style="height:44px;">
+              <div>
+                <h2 style="font-family:'Playfair Display',serif; color:#D4AF37; font-size:1.5rem; line-height:1.2;">SK.SHOP.PK Management Suite</h2>
+                <div style="font-size:0.8rem; color:rgba(255,255,255,0.75);">Store Control Center & Real-time Analytics</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:0.75rem;">
+              <button onclick="window.app.openAddProductModal()" class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-plus"></i> Add New Product
+              </button>
+              <button onclick="window.app.handleAdminLogout()" class="btn btn-secondary btn-sm">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+              </button>
+            </div>
+          </div>
+
+          <!-- Analytics KPI Cards -->
+          <div class="admin-stats-grid">
+            <div class="admin-stat-card">
+              <div>
+                <div class="admin-stat-lbl">Total Orders</div>
+                <div id="stat-total-orders" class="admin-stat-val">0</div>
+              </div>
+              <div style="font-size:2rem; color:#D4AF37;"><i class="fa-solid fa-cart-shopping"></i></div>
+            </div>
+
+            <div class="admin-stat-card">
+              <div>
+                <div class="admin-stat-lbl">Total Revenue (PKR)</div>
+                <div id="stat-total-revenue" class="admin-stat-val" style="color:#0A1128;">Rs. 0</div>
+              </div>
+              <div style="font-size:2rem; color:#10B981;"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+            </div>
+
+            <div class="admin-stat-card">
+              <div>
+                <div class="admin-stat-lbl">Catalog Products</div>
+                <div id="stat-total-products" class="admin-stat-val">0</div>
+              </div>
+              <div style="font-size:2rem; color:#3B82F6;"><i class="fa-solid fa-boxes-stacked"></i></div>
+            </div>
+
+            <div class="admin-stat-card">
+              <div>
+                <div class="admin-stat-lbl">Pending Orders</div>
+                <div id="stat-pending-orders" class="admin-stat-val" style="color:#B45309;">0</div>
+              </div>
+              <div style="font-size:2rem; color:#F59E0B;"><i class="fa-solid fa-clock-rotate-left"></i></div>
+            </div>
+          </div>
+
+          <!-- Admin Tabs (Orders, Products, Coupons) -->
+          <div class="admin-tabs">
+            <button class="admin-tab-btn active" onclick="window.app.switchAdminTab('orders')">
+              <i class="fa-solid fa-receipt"></i> Orders Management (<span id="admin-orders-tab-count">0</span>)
+            </button>
+            <button class="admin-tab-btn" onclick="window.app.switchAdminTab('products')">
+              <i class="fa-solid fa-pump-soap"></i> Products Catalog (<span id="admin-prods-tab-count">0</span>)
+            </button>
+            <button class="admin-tab-btn" onclick="window.app.switchAdminTab('coupons')">
+              <i class="fa-solid fa-ticket"></i> Coupons & Discounts
+            </button>
+          </div>
+
+          <!-- Tab Content: Orders -->
+          <div id="admin-tab-orders" class="admin-tab-content">
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Date</th>
+                    <th>Customer</th>
+                    <th>City / Address</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-orders-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Tab Content: Products -->
+          <div id="admin-tab-products" class="admin-tab-content" style="display:none;">
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Brand & Category</th>
+                    <th>Gender</th>
+                    <th>Price (PKR)</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-products-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Tab Content: Coupons -->
+          <div id="admin-tab-coupons" class="admin-tab-content" style="display:none;">
+            <div style="margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center;">
+              <h3 style="font-family:'Playfair Display',serif; color:#0A1128;">Active Store Coupons</h3>
+              <button onclick="window.app.openAddCouponModal()" class="btn btn-dark btn-sm"><i class="fa-solid fa-plus"></i> Create Coupon</button>
+            </div>
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Coupon Code</th>
+                    <th>Type</th>
+                    <th>Discount</th>
+                    <th>Min. Order</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-coupons-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CART SLIDE-OVER DRAWER -->
+  <div id="cart-drawer-overlay" class="cart-drawer-overlay" onclick="window.app.closeCartDrawer()"></div>
+  <aside id="cart-drawer" class="cart-drawer">
+    <div class="cart-header">
+      <div class="cart-header-title">
+        <i class="fa-solid fa-bag-shopping" style="color:#D4AF37;"></i> Shopping Bag
+      </div>
+      <button class="cart-close-btn" onclick="window.app.closeCartDrawer()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress Bar -->
+    <div class="free-shipping-progress" id="cart-free-shipping-box">
+      <div id="cart-shipping-text">Add Rs. 0 more for FREE Nationwide Delivery!</div>
+      <div class="shipping-bar-bg">
+        <div id="cart-shipping-fill" class="shipping-bar-fill" style="width:0%;"></div>
+      </div>
+    </div>
+
+    <!-- Items List -->
+    <div id="cart-drawer-body" class="cart-body"></div>
+
+    <!-- Footer with totals -->
+    <div class="cart-footer">
+      <div class="cart-summary-row">
+        <span>Subtotal</span>
+        <span id="cart-subtotal" style="font-weight:700; color:#0A1128;">Rs. 0</span>
+      </div>
+      <div class="cart-summary-row">
+        <span>Delivery Fee</span>
+        <span id="cart-delivery-fee">Rs. 0</span>
+      </div>
+      <div class="cart-summary-row cart-summary-total">
+        <span>Grand Total</span>
+        <span id="cart-grand-total" class="gold-text">Rs. 0</span>
+      </div>
+      <button onclick="window.app.proceedToCheckout()" class="btn btn-primary cart-checkout-btn">
+        Proceed to Checkout (COD)
+      </button>
+    </div>
+  </aside>
+
+  <!-- PRODUCT QUICK VIEW MODAL -->
+  <div id="quickview-modal" class="modal-overlay" onclick="if(event.target === this) window.app.closeQuickView();">
+    <div class="modal-container">
+      <button class="modal-close-btn" onclick="window.app.closeQuickView()"><i class="fa-solid fa-xmark"></i></button>
+      <div id="quickview-content"></div>
+    </div>
+  </div>
+
+  <!-- ADMIN ADD / EDIT PRODUCT MODAL -->
+  <div id="product-admin-modal" class="modal-overlay" onclick="if(event.target === this) window.app.closeProductModal();">
+    <div class="modal-container" style="max-width:680px; padding:2rem;">
+      <button class="modal-close-btn" onclick="window.app.closeProductModal()"><i class="fa-solid fa-xmark"></i></button>
+      <h3 id="admin-modal-title" style="font-family:'Playfair Display',serif; color:#0A1128; font-size:1.6rem; margin-bottom:1.5rem;">
+        Add New Cosmetic Product
+      </h3>
+      <form id="product-admin-form" onsubmit="event.preventDefault(); window.app.handleSaveProduct(this);">
+        <input type="hidden" name="productId" id="admin-prod-id">
+        
+        <div class="form-group">
+          <label class="form-label">Product Name <span class="required">*</span></label>
+          <input type="text" name="name" id="admin-prod-name" class="form-control" required placeholder="e.g. 24K Pure Gold Radiance Glow Serum">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Brand Name</label>
+            <input type="text" name="brand" id="admin-prod-brand" class="form-control" placeholder="SK Luxe Skin" value="SK Luxe Skin">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Gender Collection <span class="required">*</span></label>
+            <select name="gender" id="admin-prod-gender" class="form-control">
+              <option value="ladies">Ladies Collection</option>
+              <option value="gents">Gents Collection</option>
+              <option value="unisex">Unisex Collection</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Category <span class="required">*</span></label>
+            <select name="category" id="admin-prod-category" class="form-control">
+              <option value="skincare">Skincare</option>
+              <option value="haircare">Haircare</option>
+              <option value="fragrances">Fragrances</option>
+              <option value="bodycare">Body Care</option>
+              <option value="makeup">Makeup</option>
+              <option value="grooming">Men's Grooming</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subcategory</label>
+            <input type="text" name="subcategory" id="admin-prod-subcat" class="form-control" placeholder="e.g. Serums, Face Wash, Beard Oils">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Selling Price (PKR) <span class="required">*</span></label>
+            <input type="number" name="price" id="admin-prod-price" class="form-control" required placeholder="2850">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Original Price (Strikethrough)</label>
+            <input type="number" name="originalPrice" id="admin-prod-orig-price" class="form-control" placeholder="3800">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Stock Quantity</label>
+            <input type="number" name="stock" id="admin-prod-stock" class="form-control" value="25">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Image URL</label>
+            <input type="url" name="imageUrl" id="admin-prod-image" class="form-control" placeholder="https://images.unsplash.com/...">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Product Description</label>
+          <textarea name="description" id="admin-prod-desc" class="form-control" rows="3" placeholder="Explain ingredients, benefits, texture, and suitability for Pakistani weather..."></textarea>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1.5rem;">
+          <button type="button" class="btn btn-secondary" onclick="window.app.closeProductModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FLOATING WHATSAPP BUTTON (EXTREMELY IMPORTANT - REQ #7) -->
+  <a href="https://wa.me/923023912469?text=Hello%20SK.SHOP.PK!%20I%20am%20interested%20in%20your%20cosmetics%20products.%20Please%20share%20more%20details." target="_blank" class="floating-whatsapp" title="Chat with SK.SHOP.PK on WhatsApp (0302 3912469)">
+    <i class="fa-brands fa-whatsapp floating-whatsapp-icon"></i>
+    <span>Chat with Us (0302 3912469)</span>
+  </a>
+
+  <!-- TOAST NOTIFICATIONS -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- FOOTER DESIGN (Req #10) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Brand Intro -->
+        <div>
+          <a href="#home" style="display:inline-block; margin-bottom:1.25rem;">
+            <img src="assets/logo-badge.png" alt="SK.SHOP.PK" style="height:55px;">
+          </a>
+          <p style="font-size:0.9rem; line-height:1.6; margin-bottom:1.5rem; color:rgba(255,255,255,0.7);">
+            SK.SHOP.PK is Pakistan's premier online cosmetics sanctuary offering bespoke skincare, therapeutic haircare, luxury Arabian ouds, and men's grooming essentials with 100% authenticity guarantee.
+          </p>
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <i class="fa-solid fa-shield-halved" style="color:#D4AF37; font-size:1.4rem;"></i>
+            <span style="font-size:0.85rem; color:rgba(255,255,255,0.9);">100% Genuine Certified Cosmetics</span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#shop">Shop All Products</a></li>
+            <li><a href="#category/ladies">Ladies Collection</a></li>
+            <li><a href="#category/gents">Gents Collection</a></li>
+            <li><a href="#category/unisex">Unisex Collection</a></li>
+            <li><a href="#order-tracking">Track Your Order</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Policies & Information -->
+        <div>
+          <h4 class="footer-col-title">Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="#contact">About SK.SHOP.PK</a></li>
+            <li><a href="#contact">Cash on Delivery (COD)</a></li>
+            <li><a href="#contact">Privacy Policy</a></li>
+            <li><a href="#contact">Terms & Conditions</a></li>
+            <li><a href="#contact">Return & Refund Policy</a></li>
+            <li><a href="#admin">Admin Portal</a></li>
+          </ul>
+        </div>
+
+        <!-- Official Contact Information (Req #7 & #10) -->
+        <div>
+          <h4 class="footer-col-title">Official Support</h4>
+          
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <div style="font-size:0.75rem; text-transform:uppercase; color:#D4AF37; font-weight:700;">Call Us:</div>
+              <a href="tel:+923023912469" style="font-size:1.1rem; font-weight:800; color:#FFF;">0302 3912469</a>
+            </div>
+          </div>
+
+          <div class="footer-contact-item">
+            <i class="fa-brands fa-whatsapp" style="color:#25D366;"></i>
+            <div>
+              <div style="font-size:0.75rem; text-transform:uppercase; color:#25D366; font-weight:700;">WhatsApp Us:</div>
+              <a href="https://wa.me/923023912469?text=Hello%20SK.SHOP.PK!%20I%20am%20interested%20in%20your%20cosmetics%20products.%20Please%20share%20more%20details." target="_blank" style="font-size:1.1rem; font-weight:800; color:#FFF;">0302 3912469</a>
+            </div>
+          </div>
+
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div style="font-size:0.85rem;">Nationwide Express Delivery to all cities, towns & villages in Pakistan</div>
+          </div>
+
+          <div class="footer-social-links">
+            <a href="#instagram" class="footer-social-btn" title="Instagram Placeholder"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#facebook" class="footer-social-btn" title="Facebook Placeholder"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://wa.me/923023912469" target="_blank" class="footer-social-btn" title="WhatsApp Business"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div>
+          © 2026 <strong>SK.SHOP.PK</strong>. All Rights Reserved. Luxury Cosmetics & Beauty Care Pakistan.
+        </div>
+        <div class="payment-badges">
+          <span class="payment-badge"><i class="fa-solid fa-money-bill-wave"></i> Cash on Delivery</span>
+          <span class="payment-badge"><i class="fa-solid fa-building-columns"></i> Bank Transfer</span>
+          <span class="payment-badge"><i class="fa-solid fa-mobile-screen"></i> JazzCash</span>
+          <span class="payment-badge"><i class="fa-solid fa-wallet"></i> EasyPaisa</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
